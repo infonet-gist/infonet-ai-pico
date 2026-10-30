@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1240" height="510" viewBox="0 0 1240 510" role="img" aria-labelledby="ttl desc">
+<title id="ttl">PICO optimizer: utility-gated gradient and spectrally controlled stochastic perturbation</title>
+<desc id="desc">Model parameters and gradients feed GateU and SpecFlag. GateU protects the gradient and participates in the noise mask. SpecFlag and the group pause restrict the noise path only. Both paths are combined in the PICO update.</desc>
+<defs><marker id="arrow" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto"><path d="M0 0 L9 4.5 L0 9 Z" fill="#63778D"/></marker><style>
+text{font-family:Arial,Helvetica,sans-serif;fill:#22374A}.title{font-size:27px;font-weight:700}.subtitle{font-size:15px;fill:#607286}.lane{font-size:13px;font-weight:700;letter-spacing:1px;fill:#647B8B}.node{font-size:19px;font-weight:700}.formula{font-size:17px;font-weight:500}.small{font-size:14px;fill:#586B7D}.note{font-size:13px;fill:#586B7D}.arrow{fill:none;stroke:#63778D;stroke-width:2.3;stroke-linecap:round;stroke-linejoin:round;marker-end:url(#arrow)}
+</style></defs>
+<rect x="0" y="0" width="1240" height="510" fill="#FFFFFF"/>
+<text x="42" y="45" class="title">PICO: optimizer-level control</text>
+<text x="42" y="73" class="subtitle">Utility-based gradient shielding and spectrally gated stochastic exploration</text>
+<path d="M42 89 H1195" stroke="#D8E1E8" stroke-width="1.5"/>
+<text x="304" y="112" class="lane">UTILITY SIGNAL</text>
+<text x="611" y="112" class="lane">GRADIENT PATH</text>
+<text x="304" y="287" class="lane">STRUCTURAL SIGNAL</text>
+<text x="611" y="287" class="lane">PERTURBATION PATH</text>
+<rect x="40" y="209" width="204" height="116" rx="10" fill="#F1F4F7" stroke="#C7D2DE" stroke-width="1.5"/><rect x="40" y="209" width="5" height="116" rx="2.5" fill="#586B7D"/><text x="58" y="238" class="node">Inputs</text><text x="58" y="265" class="formula">Parameters θₖ</text><text x="58" y="287" class="small">Gradient gₖ / matrix W</text>
+<rect x="295" y="133" width="233" height="126" rx="10" fill="#F1F6FA" stroke="#C7D2DE" stroke-width="1.5"/><rect x="295" y="133" width="5" height="126" rx="2.5" fill="#466888"/><text x="313" y="162" class="node">GateU</text><text x="313" y="189" class="formula">Utility gate u</text><text x="313" y="211" class="small">Coordinate-wise protection</text>
+<rect x="295" y="308" width="233" height="127" rx="10" fill="#F1F6FA" stroke="#C7D2DE" stroke-width="1.5"/><rect x="295" y="308" width="5" height="127" rx="2.5" fill="#466888"/><text x="313" y="337" class="node">SpecFlag</text><text x="313" y="364" class="formula">Spectral flag sW</text><text x="313" y="386" class="small">Group pause πG = max sW</text>
+<rect x="605" y="133" width="260" height="126" rx="10" fill="#E9F3F1" stroke="#C7D2DE" stroke-width="1.5"/><rect x="605" y="133" width="5" height="126" rx="2.5" fill="#3A7A73"/><text x="623" y="162" class="node">Protected gradient</text><text x="623" y="189" class="formula">g̃ = g ⊙ (1 − u)</text><text x="623" y="211" class="small">Always applied</text>
+<rect x="605" y="308" width="260" height="127" rx="10" fill="#FAF4EA" stroke="#C7D2DE" stroke-width="1.5"/><rect x="605" y="308" width="5" height="127" rx="2.5" fill="#B28A4F"/><text x="623" y="337" class="node">Admitted perturbation</text><text x="623" y="364" class="formula">m = (1−u)(1−s)(1−πG)</text><text x="623" y="386" class="small">ξ ~ N(0, diag((σ₀m)²))</text>
+<rect x="946" y="213" width="244" height="126" rx="10" fill="#EEF2F7" stroke="#C7D2DE" stroke-width="1.5"/><rect x="946" y="213" width="5" height="126" rx="2.5" fill="#35506B"/><text x="964" y="242" class="node">PICO update</text><text x="964" y="269" class="formula">θₖ₊₁ ← update(θₖ)</text><text x="964" y="291" class="small">Protected gradient + noise</text>
+<path class="arrow" d="M244 238 C260 238 271 197 295 197"/>
+<path class="arrow" d="M244 297 C262 297 269 369 295 369"/>
+<path class="arrow" d="M528 197 H605"/>
+<path class="arrow" d="M528 373 H605"/>
+<path class="arrow" d="M517 246 H570 V330 H605"/>
+<path class="arrow" d="M865 195 H907 V260 H946"/>
+<path class="arrow" d="M865 374 H909 V299 H946"/>
+<text x="548" y="318" class="note">u</text>
+<text x="912" y="184" class="note">g̃</text>
+<text x="914" y="369" class="note">ξ</text>
+<rect x="42" y="461" width="1150" height="28" rx="5" fill="#F5F7F9"/>
+<text x="58" y="480" class="note">SpecFlag and group pause suppress perturbation when unstable; they do not freeze the utility-protected gradient update.</text>
+</svg>
